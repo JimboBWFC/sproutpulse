@@ -96,7 +96,7 @@ function BrandBannerVideo() {
           loop
           muted
           playsInline
-          className="h-[200px] w-full object-cover"
+          className="h-[160px] sm:h-[200px] md:h-[240px] w-full object-cover"
         />
       </div>
     </div>
@@ -108,7 +108,7 @@ function BrandBannerVideo() {
 ======================= */
 function SquareVideoCard() {
   return (
-    <div className="relative aspect-square w-full max-w-md md:max-w-lg overflow-hidden rounded-2xl border border-white/10 bg-black shadow-[0_25px_70px_-30px_rgba(0,0,0,0.9)]">
+    <div className="relative aspect-square w-full max-w-sm sm:max-w-md md:max-w-lg overflow-hidden rounded-2xl border border-white/10 bg-black shadow-[0_25px_70px_-30px_rgba(0,0,0,0.9)]">
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-black to-black" />
       <video
         src={sproutVid1}
@@ -140,7 +140,7 @@ function ValueProposition() {
           financial advice. Users decide how — or if — they act.
         </p>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
           <Card>
             <ul className="space-y-3 text-sm text-white/70">
               <li>• Signal over noise</li>
@@ -318,9 +318,12 @@ function GettingStarted() {
             </li>
           </ol>
 
-          <div className="mt-5 flex flex-wrap gap-2">
-            <Button href={BRAND.telegramGroupUrl}>Open Telegram</Button>
-            <Button variant="secondary" href="/verify">
+          {/* Mobile: stack buttons full-width */}
+          <div className="mt-5 flex flex-col sm:flex-row gap-2">
+            <Button className="w-full sm:w-auto" href={BRAND.telegramGroupUrl}>
+              Open Telegram
+            </Button>
+            <Button className="w-full sm:w-auto" variant="secondary" href="/verify">
               Verify Wallet
             </Button>
           </div>
@@ -406,7 +409,7 @@ function Home() {
   );
 
   return (
-    <div className="min-h-screen bg-[#020409] text-white">
+    <div className="min-h-screen bg-[#020409] text-white overflow-x-hidden">
       {/* Background */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute -top-40 left-1/2 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-3xl" />
@@ -416,25 +419,30 @@ function Home() {
 
       {/* Header */}
       <header className="mx-auto mt-4 max-w-6xl px-4">
-        <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-[#050b0c]/70 px-4 py-3 backdrop-blur">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-2xl border border-white/10 bg-[#050b0c]/70 px-4 py-3 backdrop-blur">
           <div className="flex items-center gap-3">
             <img src={logo} alt="SproutPulse" className="h-9 w-auto" />
-            <div>
+            <div className="min-w-0">
               <div className="text-sm font-extrabold tracking-tight">
                 {BRAND.name}
               </div>
-              <div className="text-[11px] text-white/60">{BRAND.tagline}</div>
+              <div className="text-[11px] text-white/60 truncate">
+                {BRAND.tagline}
+              </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <Button variant="secondary" href="/whitepaper">
+          {/* Mobile: buttons wrap/stack cleanly */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+            <Button className="w-full sm:w-auto" variant="secondary" href="/whitepaper">
               Whitepaper
             </Button>
-            <Button variant="secondary" href="/verify">
+            <Button className="w-full sm:w-auto" variant="secondary" href="/verify">
               Verify
             </Button>
-            <Button href={BRAND.telegramGroupUrl}>Telegram</Button>
+            <Button className="w-full sm:w-auto" href={BRAND.telegramGroupUrl}>
+              Telegram
+            </Button>
           </div>
         </div>
       </header>
@@ -453,7 +461,7 @@ function Home() {
               <Pill>Telegram-first</Pill>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
               Catch the{" "}
               <span className="text-emerald-300">revival</span> before it goes
               viral.
@@ -471,26 +479,29 @@ function Home() {
               . Informational only — not financial advice.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <Button href={BRAND.telegramGroupUrl}>Join Telegram</Button>
-              <Button variant="secondary" href="/verify">
+            {/* Mobile: stack CTA buttons full-width */}
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
+              <Button className="w-full sm:w-auto" href={BRAND.telegramGroupUrl}>
+                Join Telegram
+              </Button>
+              <Button className="w-full sm:w-auto" variant="secondary" href="/verify">
                 Verify Wallet
               </Button>
-              <Button variant="secondary" href="/whitepaper">
+              <Button className="w-full sm:w-auto" variant="secondary" href="/whitepaper">
                 Read whitepaper
               </Button>
               <a
                 href={BRAND.docsPdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-white/60 hover:text-white underline underline-offset-4"
+                className="text-sm text-white/60 hover:text-white underline underline-offset-4 self-center sm:self-auto"
               >
                 PDF version
               </a>
             </div>
           </div>
 
-          <Card>
+          <Card className="h-fit">
             <div className="text-sm font-semibold">Access model</div>
             <p className="mt-2 text-sm text-white/70">
               Token-gated via{" "}
@@ -498,7 +509,7 @@ function Home() {
               Verification uses message signing only (no transactions).
             </p>
             <div className="mt-4">
-              <Button variant="secondary" href="/verify">
+              <Button className="w-full sm:w-auto" variant="secondary" href="/verify">
                 Go to Verify
               </Button>
             </div>
@@ -523,7 +534,7 @@ function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="mt-20 text-center text-xs text-white/40">
+        <footer className="mt-20 text-center text-xs text-white/40 px-4">
           © {new Date().getFullYear()} {BRAND.name} — Informational only • Not
           financial advice
         </footer>
@@ -544,6 +555,7 @@ export default function App() {
     </Routes>
   );
 }
+
 
 
 

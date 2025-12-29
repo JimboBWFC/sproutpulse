@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import logo from "./assets/sproutpulse-logo.png";
-import sproutVid1 from "./assets/sproutvid1.mp4";
 
 import Whitepaper from "./pages/Whitepaper";
 import Verify from "./pages/Verify";
@@ -104,45 +103,69 @@ function BrandBannerVideo() {
 }
 
 /* =======================
-   Square video (NO CROPPING)
-======================= */
-function SquareVideoCard() {
-  return (
-    <div className="relative aspect-square w-full max-w-sm sm:max-w-md md:max-w-lg overflow-hidden rounded-2xl border border-white/10 bg-black shadow-[0_25px_70px_-30px_rgba(0,0,0,0.9)]">
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-black to-black" />
-      <video
-        src={sproutVid1}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="relative z-10 h-full w-full object-contain"
-      />
-    </div>
-  );
-}
-
-/* =======================
-   HOME (Option 2: richer, less “wall of info”)
+   HOME (clean sections)
 ======================= */
 function Home() {
-  const quickSignals = useMemo(
+  const aims = useMemo(
+    () => [
+      "We build tools that surface signals and context from public on-chain data.",
+      "We do not provide financial advice and we do not guarantee outcomes.",
+      "We aim to reduce noise, avoid hype, and keep users in control.",
+      "We build for credibility, clarity, and long-term usefulness.",
+      "You remain responsible for your decisions and risk management.",
+    ],
+    []
+  );
+
+  const bots = useMemo(
     () => [
       {
-        title: "Revival activity",
-        desc: "Quiet tokens showing fresh volume / liquidity shifts after being dormant.",
+        name: "Deep Roots — Revival Radar",
+        points: [
+          "Scans for tokens that were quiet and show meaningful signs of life again.",
+          "Highlights context like volume/liquidity changes and on-chain activity patterns.",
+          "Useful for monitoring revivals and community-led recoveries (CTOs).",
+        ],
+        tag: "Solana + BNB",
       },
       {
-        title: "Graduation events",
-        desc: "Post-launch transitions and early risk context (no hype language).",
+        name: "Fresh Sprouts — Pump Professor",
+        points: [
+          "Watches new launches / graduation events and adds quick risk context.",
+          "Flags common red flags (concentration patterns, suspicious early behaviour).",
+          "Designed to reduce blind chasing — not to promise “safe gems”.",
+        ],
+        tag: "Solana",
       },
       {
-        title: "Liquidity changes",
-        desc: "Context around liquidity health and meaningful movements.",
+        name: "Visibility & Context (Signal only)",
+        points: [
+          "Flags visibility events such as Dexscreener boosts as context.",
+          "Never treated as a standalone bullish trigger — it’s an intent signal.",
+          "Helps users understand why attention might be appearing.",
+        ],
+        tag: "Context layer",
+      },
+    ],
+    []
+  );
+
+  const accessSteps = useMemo(
+    () => [
+      {
+        title: "1) Acquire $SPROUT (planned)",
+        body:
+          "Hold any amount of $SPROUT on Solana to unlock premium bot access (planned). No presale dynamics — accessibility is the goal.",
       },
       {
-        title: "Visibility events",
-        desc: "e.g. Dexscreener boosts as context (never used as a standalone trigger).",
+        title: "2) Verify ownership safely",
+        body:
+          "Connect your wallet and sign a message to prove ownership. Message-signing is not a transaction and cannot spend your funds.",
+      },
+      {
+        title: "3) Access unlocks in Telegram",
+        body:
+          "Once verified, you’ll be able to use the relevant bots and feeds inside Telegram. If your wallet stops qualifying, access may pause until you qualify again.",
       },
     ],
     []
@@ -191,7 +214,7 @@ function Home() {
 
       {/* Main */}
       <main className="mx-auto max-w-6xl px-4 pt-10 pb-20">
-        {/* HERO */}
+        {/* HERO + At a glance */}
         <section className="grid gap-8 md:grid-cols-2 items-start">
           <div className="space-y-5">
             <div className="flex flex-wrap gap-2">
@@ -235,179 +258,145 @@ function Home() {
             </div>
           </div>
 
-          {/* RIGHT: at-a-glance + video */}
-          <div className="space-y-4">
-            <Card className="h-fit">
-              <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
-                AT A GLANCE
-              </div>
-              <h2 className="mt-2 text-xl font-extrabold tracking-tight">
-                Built for credibility
-              </h2>
-              <p className="mt-2 text-sm text-white/70">
-                SproutPulse is designed to help ordinary users navigate signals calmly — without
-                insider games, hype cycles, or “guaranteed” claims.
-              </p>
-
-              <div className="mt-4 grid gap-3">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">
-                  <div className="text-xs font-semibold text-white/80">What you get</div>
-                  <div className="mt-1 text-sm text-white/65">
-                    Telegram alerts with explainable context: volume shifts, liquidity changes, and visibility events.
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">
-                  <div className="text-xs font-semibold text-white/80">What we don’t do</div>
-                  <div className="mt-1 text-sm text-white/65">
-                    No financial advice. No promises. No “alpha” hype language.
-                  </div>
-                </div>
-              </div>
-            </Card>
-
-            <div className="flex justify-center md:justify-end">
-              <SquareVideoCard />
+          <Card className="h-fit">
+            <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
+              AT A GLANCE
             </div>
+            <h2 className="mt-2 text-xl font-extrabold tracking-tight">
+              Built for credibility
+            </h2>
+            <p className="mt-2 text-sm text-white/70">
+              SproutPulse is designed to help ordinary users navigate signals calmly — without
+              insider games, hype cycles, or “guaranteed” claims.
+            </p>
+
+            <div className="mt-4 grid gap-3">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">
+                <div className="text-xs font-semibold text-white/80">What you get</div>
+                <div className="mt-1 text-sm text-white/65">
+                  Telegram alerts with explainable context: volume shifts, liquidity changes, and visibility events.
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">
+                <div className="text-xs font-semibold text-white/80">What we don’t do</div>
+                <div className="mt-1 text-sm text-white/65">
+                  No financial advice. No promises. No “alpha” hype language.
+                </div>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        {/* 1) Aims / goals / support */}
+        <section className="mt-14">
+          <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
+            OUR AIMS
+          </div>
+          <h2 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight">
+            Tools that support users — not advice
+          </h2>
+          <p className="mt-2 text-sm md:text-base text-white/65 max-w-3xl">
+            SproutPulse exists to provide calmer, more explainable crypto tooling. We are not here
+            to tell users what to buy, and we don’t pretend any alert guarantees success.
+          </p>
+
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            {aims.map((t) => (
+              <div
+                key={t}
+                className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 text-sm text-white/70"
+              >
+                • {t}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.02] p-5">
+            <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
+              IMPORTANT
+            </div>
+            <p className="mt-2 text-sm text-white/65">
+              Crypto markets are volatile. SproutPulse alerts are informational signals based on public data
+              and may be incomplete, delayed, or wrong. You are responsible for your decisions and risk management.
+            </p>
           </div>
         </section>
 
-        {/* WHAT WE’RE BUILDING (bullets + cards) */}
+        {/* 2) Telegram Bots */}
         <section className="mt-14">
           <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
-            WHAT WE’RE BUILDING
+            TELEGRAM BOTS
           </div>
           <h2 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight">
-            A calmer way to track crypto signals
+            Bots built for clarity
           </h2>
-          <p className="mt-2 text-sm md:text-base text-white/65 max-w-2xl">
-            Designed for mobile scanning — the deeper detail lives on dedicated pages via the menu (next step).
+          <p className="mt-2 text-sm md:text-base text-white/65 max-w-3xl">
+            Our Telegram bots monitor public on-chain signals and send calm alerts with context.
+            They help users spot activity earlier and understand risk signals — without hype.
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <Card>
-              <div className="text-sm font-semibold">Key points</div>
-              <ul className="mt-4 space-y-2 text-sm text-white/70">
-                <li>• Signal + context — not advice</li>
-                <li>• Telegram-first delivery</li>
-                <li>• Focus on revivals and early activity</li>
-                <li>• Solana + BNB Chain feeds</li>
-                <li>• Clear caution language (no hype)</li>
-                <li>• Built for long-term trust</li>
-              </ul>
-            </Card>
-
-            <Card>
-              <div className="text-sm font-semibold">Signals we highlight</div>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                {quickSignals.map((s) => (
-                  <div
-                    key={s.title}
-                    className="rounded-2xl border border-white/10 bg-white/[0.02] p-4"
-                  >
-                    <div className="text-xs font-semibold text-white/80">
-                      {s.title}
-                    </div>
-                    <div className="mt-1 text-xs text-white/60">
-                      {s.desc}
-                    </div>
+            {bots.map((b) => (
+              <Card key={b.name}>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="text-lg font-semibold text-white">{b.name}</div>
+                    <ul className="mt-3 space-y-2 text-sm text-white/70">
+                      {b.points.map((p) => (
+                        <li key={p}>• {p}</li>
+                      ))}
+                    </ul>
                   </div>
-                ))}
-              </div>
-            </Card>
+                  <Pill>{b.tag}</Pill>
+                </div>
+              </Card>
+            ))}
           </div>
         </section>
 
-        {/* HOW IT WORKS (3 steps) */}
+        {/* 3) Token purchase + verification */}
         <section className="mt-14">
           <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
-            HOW IT WORKS
+            ACCESS & VERIFICATION
           </div>
           <h2 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight">
-            Simple flow. User stays in control.
+            Simple, transparent access
           </h2>
+          <p className="mt-2 text-sm md:text-base text-white/65 max-w-3xl">
+            Premium bot access is planned to be unlocked by holding{" "}
+            <span className="text-emerald-200 font-semibold">${BRAND.token}</span> on Solana.
+            Verification uses safe message-signing only (no transactions).
+          </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <Card>
-              <div className="text-xs font-semibold text-white/80">1) Monitor</div>
-              <p className="mt-2 text-sm text-white/70">
-                Bots watch public on-chain signals across Solana and BNB Chain.
-              </p>
-            </Card>
-            <Card>
-              <div className="text-xs font-semibold text-white/80">2) Explain</div>
-              <p className="mt-2 text-sm text-white/70">
-                Alerts include context and caution — not “buy now” nonsense.
-              </p>
-            </Card>
-            <Card>
-              <div className="text-xs font-semibold text-white/80">3) Decide</div>
-              <p className="mt-2 text-sm text-white/70">
-                Users choose what (if anything) to do — responsibility stays with the user.
-              </p>
-            </Card>
+            {accessSteps.map((s) => (
+              <Card key={s.title}>
+                <div className="text-sm font-semibold">{s.title}</div>
+                <p className="mt-2 text-sm text-white/70">{s.body}</p>
+              </Card>
+            ))}
           </div>
-        </section>
 
-        {/* NEXT STEPS cards */}
-        <section className="mt-14">
-          <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
-            NEXT STEPS
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <Button className="w-full sm:w-auto" variant="secondary" href="/verify">
+              Verify Wallet
+            </Button>
+            <Button className="w-full sm:w-auto" href={BRAND.telegramGroupUrl}>
+              Open Telegram
+            </Button>
+            <Button className="w-full sm:w-auto" variant="secondary" href="/whitepaper">
+              Read Whitepaper
+            </Button>
           </div>
-          <h2 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight">
-            Explore at your own pace
-          </h2>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <Card>
-              <div className="text-sm font-semibold">Read the whitepaper</div>
-              <p className="mt-2 text-sm text-white/70">
-                The full vision, principles, and roadmap — with zero hype.
-              </p>
-              <div className="mt-4">
-                <Button className="w-full" variant="secondary" href="/whitepaper">
-                  Open Whitepaper
-                </Button>
-              </div>
-            </Card>
-
-            <Card>
-              <div className="text-sm font-semibold">Verify wallet</div>
-              <p className="mt-2 text-sm text-white/70">
-                Access will be unlocked via safe message-signing (no transactions).
-              </p>
-              <div className="mt-4">
-                <Button className="w-full" variant="secondary" href="/verify">
-                  Go to Verify
-                </Button>
-              </div>
-            </Card>
-
-            <Card>
-              <div className="text-sm font-semibold">Join Telegram</div>
-              <p className="mt-2 text-sm text-white/70">
-                Alerts and updates live here. Calm delivery, clear context.
-              </p>
-              <div className="mt-4">
-                <Button className="w-full" href={BRAND.telegramGroupUrl}>
-                  Open Telegram
-                </Button>
-              </div>
-            </Card>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-sm text-white/70">
+            <span className="font-semibold text-white/85">Safety reminder:</span>{" "}
+            We will never ask for your seed phrase. Verification uses message signing only.
           </div>
-        </section>
 
-        {/* Trust / Caution */}
-        <section className="mt-14">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-            <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
-              TRUST & CAUTION
-            </div>
-            <p className="mt-2 text-sm text-white/65">
-              Crypto markets are volatile. SproutPulse alerts are informational signals built from public data
-              and may be incomplete, delayed, or wrong. Nothing here is financial advice — you are responsible
-              for your own decisions and risk management.
-            </p>
+          <div className="mt-4 text-xs text-white/45">
+            Token mint and buy link will be added after launch: <span className="text-white/60">{BRAND.sproutMint}</span>
           </div>
         </section>
 

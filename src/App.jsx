@@ -285,3 +285,12 @@ function Home() {
     </div>
   );
 }
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/whitepaper" element={<Whitepaper />} />
+      <Route path="/verify" element={<Verify />} />
+    </Routes>
+  );
+}

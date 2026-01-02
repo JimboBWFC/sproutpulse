@@ -1,423 +1,384 @@
-import { useMemo } from "react";
-import { Routes, Route } from "react-router-dom";
+// src/App.jsx
+import React from "react";
 
-import logo from "./assets/sproutpulse-logo.png";
-
-import Whitepaper from "./pages/Whitepaper";
-import Verify from "./pages/Verify";
-
-/* =======================
-   Brand constants
-======================= */
-const BRAND = {
-  name: "SproutPulse",
-  tagline: "Green-light alerts for sleepy tokens.",
-  token: "SPROUT",
-  telegramGroupUrl: "https://t.me/+8nGAP8HapTExN2Zk",
-
-  docsPdfUrl: "/SproutPulse-Whitepaper.pdf",
-  bannerVideoUrl: "/sproutpulsebanvid.mp4",
-
-  sproutMint: "TBA — add official mint after launch",
-  buyUrl: "TBA — add moon.it / DEX link",
-  minHold: "Any amount (planned)",
-};
-
-/* =======================
-   Helpers
-======================= */
-function cn(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-/* =======================
-   UI Components
-======================= */
-function Button({ children, href, variant = "primary", className }) {
-  const base =
-    "inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-emerald-300/40";
-
-  const styles =
-    variant === "primary"
-      ? "bg-emerald-400 text-black hover:bg-emerald-300"
-      : "border border-white/10 bg-white/[0.02] text-white/80 hover:bg-white/[0.05]";
-
-  const Comp = href ? "a" : "button";
-  const isExternal =
-    href &&
-    (href.startsWith("http") ||
-      href.startsWith("https") ||
-      href.endsWith(".pdf"));
-
+export default function App() {
   return (
-    <Comp
-      href={href}
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener noreferrer" : undefined}
-      className={cn(base, styles, className)}
-    >
-      {children}
-    </Comp>
-  );
-}
-
-function Pill({ children }) {
-  return (
-    <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1 text-[11px] text-white/70">
-      {children}
-    </span>
-  );
-}
-
-function Card({ children, className }) {
-  return (
-    <div
-      className={cn(
-        "rounded-2xl border border-white/10 bg-[#060c0d]/70 p-6 backdrop-blur",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-}
-
-/* =======================
-   Top banner video
-======================= */
-function BrandBannerVideo() {
-  return (
-    <div className="mx-auto mt-6 max-w-6xl px-4">
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-black">
-        <video
-          src={BRAND.bannerVideoUrl}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="h-[160px] sm:h-[200px] md:h-[240px] w-full object-cover"
-        />
-      </div>
-    </div>
-  );
-}
-
-/* =======================
-   HOME (clean sections)
-======================= */
-function Home() {
-  const aims = useMemo(
-    () => [
-      "We build tools that surface signals and context from public on-chain data.",
-      "We do not provide financial advice and we do not guarantee outcomes.",
-      "We aim to reduce noise, avoid hype, and keep users in control.",
-      "We build for credibility, clarity, and long-term usefulness.",
-      "You remain responsible for your decisions and risk management.",
-    ],
-    []
-  );
-
-  const bots = useMemo(
-    () => [
-      {
-        name: "Deep Roots — Revival Radar",
-        points: [
-          "Scans for tokens that were quiet and show meaningful signs of life again.",
-          "Highlights context like volume/liquidity changes and on-chain activity patterns.",
-          "Useful for monitoring revivals and community-led recoveries (CTOs).",
-        ],
-        tag: "Solana + BNB",
-      },
-      {
-        name: "Fresh Sprouts — Pump Professor",
-        points: [
-          "Watches new launches / graduation events and adds quick risk context.",
-          "Flags common red flags (concentration patterns, suspicious early behaviour).",
-          "Designed to reduce blind chasing — not to promise “safe gems”.",
-        ],
-        tag: "Solana",
-      },
-      {
-        name: "Visibility & Context (Signal only)",
-        points: [
-          "Flags visibility events such as Dexscreener boosts as context.",
-          "Never treated as a standalone bullish trigger — it’s an intent signal.",
-          "Helps users understand why attention might be appearing.",
-        ],
-        tag: "Context layer",
-      },
-    ],
-    []
-  );
-
-  const accessSteps = useMemo(
-    () => [
-      {
-        title: "1) Acquire $SPROUT (planned)",
-        body:
-          "Hold any amount of $SPROUT on Solana to unlock premium bot access (planned). No presale dynamics — accessibility is the goal.",
-      },
-      {
-        title: "2) Verify ownership safely",
-        body:
-          "Connect your wallet and sign a message to prove ownership. Message-signing is not a transaction and cannot spend your funds.",
-      },
-      {
-        title: "3) Access unlocks in Telegram",
-        body:
-          "Once verified, you’ll be able to use the relevant bots and feeds inside Telegram. If your wallet stops qualifying, access may pause until you qualify again.",
-      },
-    ],
-    []
-  );
-
-  return (
-    <div className="min-h-screen bg-[#020409] text-white overflow-x-hidden">
-      {/* Background */}
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute -top-40 left-1/2 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(16,185,129,0.07),transparent_60%)]" />
-        <div className="absolute inset-0 opacity-[0.35] [background-image:linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_55%_40%_at_50%_0%,black,transparent_65%)]" />
-      </div>
-
-      {/* Header */}
-      <header className="mx-auto mt-4 max-w-6xl px-4">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-2xl border border-white/10 bg-[#050b0c]/70 px-4 py-3 backdrop-blur">
-          <div className="flex items-center gap-3">
-            <img src={logo} alt="SproutPulse" className="h-9 w-auto" />
-            <div className="min-w-0">
-              <div className="text-sm font-extrabold tracking-tight">
-                {BRAND.name}
-              </div>
-              <div className="text-[11px] text-white/60 truncate">
-                {BRAND.tagline}
-              </div>
+    <div className="min-h-screen bg-neutral-950 text-neutral-50">
+      {/* Top bar / header */}
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/80 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-2">
+            <div className="h-9 w-9 rounded-xl bg-white/10 ring-1 ring-white/10" />
+            <div className="leading-tight">
+              <div className="text-sm font-semibold tracking-wide">SproutPulse</div>
+              <div className="text-xs text-white/60">Calm signals in a noisy market</div>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-            <Button className="w-full sm:w-auto" variant="secondary" href="/whitepaper">
-              Whitepaper
-            </Button>
-            <Button className="w-full sm:w-auto" variant="secondary" href="/verify">
-              Verify
-            </Button>
-            <Button className="w-full sm:w-auto" href={BRAND.telegramGroupUrl}>
-              Telegram
-            </Button>
+          <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
+            <a className="hover:text-white" href="#what">
+              What it is
+            </a>
+            <a className="hover:text-white" href="#aims">
+              Aims
+            </a>
+            <a className="hover:text-white" href="#bots">
+              Bots
+            </a>
+            <a className="hover:text-white" href="#transparency">
+              Transparency
+            </a>
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <a
+              href="#bots"
+              className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-neutral-950 hover:opacity-90"
+            >
+              Explore the bots
+            </a>
           </div>
         </div>
       </header>
 
-      {/* Top banner video */}
-      <BrandBannerVideo />
-
-      {/* Main */}
-      <main className="mx-auto max-w-6xl px-4 pt-10 pb-20">
-        {/* HERO + At a glance */}
-        <section className="grid gap-8 md:grid-cols-2 items-start">
-          <div className="space-y-5">
-            <div className="flex flex-wrap gap-2">
-              <Pill>Telegram-first alerts</Pill>
-              <Pill>Solana + BNB feeds</Pill>
-              <Pill>Signal + context</Pill>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
-              Calm crypto alerts —{" "}
-              <span className="text-emerald-300">no hype</span>, no promises.
-            </h1>
-
-            <p className="max-w-xl text-sm md:text-base text-white/70">
-              SproutPulse surfaces early signals and context for quiet tokens — so users can decide
-              what (if anything) to do.
-            </p>
-
-            <p className="max-w-xl text-xs md:text-sm text-white/55">
-              Informational tooling only — not financial advice. Crypto is volatile and losses are possible.
-            </p>
-
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
-              <Button className="w-full sm:w-auto" href={BRAND.telegramGroupUrl}>
-                Join Telegram
-              </Button>
-              <Button className="w-full sm:w-auto" variant="secondary" href="/verify">
-                Verify Wallet
-              </Button>
-              <Button className="w-full sm:w-auto" variant="secondary" href="/whitepaper">
-                Read Whitepaper
-              </Button>
-              <a
-                href={BRAND.docsPdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-white/60 hover:text-white underline underline-offset-4 self-center sm:self-auto"
-              >
-                PDF version
-              </a>
-            </div>
+      <main>
+        {/* HERO */}
+        <section className="relative overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 opacity-30">
+            <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
+            <div className="absolute -bottom-40 left-1/4 h-[420px] w-[420px] rounded-full bg-white/5 blur-3xl" />
           </div>
 
-          <Card className="h-fit">
-            <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
-              AT A GLANCE
-            </div>
-            <h2 className="mt-2 text-xl font-extrabold tracking-tight">
-              Built for credibility
-            </h2>
-            <p className="mt-2 text-sm text-white/70">
-              SproutPulse is designed to help ordinary users navigate signals calmly — without
-              insider games, hype cycles, or “guaranteed” claims.
-            </p>
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+            <div className="grid gap-10 md:grid-cols-12 md:items-center">
+              <div className="md:col-span-7">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/60" />
+                  Building quietly • Tools over hype
+                </div>
 
-            <div className="mt-4 grid gap-3">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">
-                <div className="text-xs font-semibold text-white/80">What you get</div>
-                <div className="mt-1 text-sm text-white/65">
-                  Telegram alerts with explainable context: volume shifts, liquidity changes, and visibility events.
+                <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+                  Calm signals in a noisy market.
+                </h1>
+
+                <p className="mt-4 text-lg text-white/70 md:text-xl">
+                  <span className="text-white">SproutPulse helps you understand crypto risk</span> — not chase hype.
+                  We build simple, transparent tools that help you evaluate tokens, spot warning signs, and make{" "}
+                  <span className="text-white">your own</span> informed decisions.
+                </p>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <a
+                    href="#what"
+                    className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:opacity-90"
+                  >
+                    What SproutPulse is
+                  </a>
+                  <a
+                    href="#bots"
+                    className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                  >
+                    See the Telegram bots
+                  </a>
+                </div>
+
+                <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                  <StatPill title="No promises" desc="No guaranteed gains" />
+                  <StatPill title="No paid shills" desc="No hidden incentives" />
+                  <StatPill title="Just clarity" desc="Plain-English outputs" />
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">
-                <div className="text-xs font-semibold text-white/80">What we don’t do</div>
-                <div className="mt-1 text-sm text-white/65">
-                  No financial advice. No promises. No “alpha” hype language.
-                </div>
-              </div>
-            </div>
-          </Card>
-        </section>
+              <div className="md:col-span-5">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-sm">
+                  <div className="text-sm font-semibold text-white">SproutPulse principle</div>
+                  <p className="mt-2 text-sm text-white/70">
+                    “SproutPulse doesn’t tell you what to buy. It helps you understand what you’re looking at.”
+                  </p>
 
-        {/* 1) Aims / goals / support */}
-        <section className="mt-14">
-          <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
-            OUR AIMS
-          </div>
-          <h2 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight">
-            Tools that support users — not advice
-          </h2>
-          <p className="mt-2 text-sm md:text-base text-white/65 max-w-3xl">
-            SproutPulse exists to provide calmer, more explainable crypto tooling. We are not here
-            to tell users what to buy, and we don’t pretend any alert guarantees success.
-          </p>
-
-          <div className="mt-6 grid gap-3 md:grid-cols-2">
-            {aims.map((t) => (
-              <div
-                key={t}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 text-sm text-white/70"
-              >
-                • {t}
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-            <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
-              IMPORTANT
-            </div>
-            <p className="mt-2 text-sm text-white/65">
-              Crypto markets are volatile. SproutPulse alerts are informational signals based on public data
-              and may be incomplete, delayed, or wrong. You are responsible for your decisions and risk management.
-            </p>
-          </div>
-        </section>
-
-        {/* 2) Telegram Bots */}
-        <section className="mt-14">
-          <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
-            TELEGRAM BOTS
-          </div>
-          <h2 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight">
-            Bots built for clarity
-          </h2>
-          <p className="mt-2 text-sm md:text-base text-white/65 max-w-3xl">
-            Our Telegram bots monitor public on-chain signals and send calm alerts with context.
-            They help users spot activity earlier and understand risk signals — without hype.
-          </p>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {bots.map((b) => (
-              <Card key={b.name}>
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="text-lg font-semibold text-white">{b.name}</div>
-                    <ul className="mt-3 space-y-2 text-sm text-white/70">
-                      {b.points.map((p) => (
-                        <li key={p}>• {p}</li>
-                      ))}
-                    </ul>
+                  <div className="mt-5 rounded-xl border border-white/10 bg-neutral-950/40 p-4">
+                    <div className="text-xs font-semibold text-white/80">Quick disclaimer</div>
+                    <p className="mt-2 text-xs leading-relaxed text-white/60">
+                      Crypto is volatile and unpredictable. SproutPulse provides educational, informational tools only —
+                      not financial advice. You stay in control.
+                    </p>
                   </div>
-                  <Pill>{b.tag}</Pill>
+
+                  <div className="mt-5 grid gap-3">
+                    <MiniCard title="Revival Radar" desc="Highlights tokens showing signs of genuine recovery." />
+                    <MiniCard title="Pump Professor" desc="Adds early risk context to new launches and graduations." />
+                    <MiniCard title="Risk Roots" desc="Flags where rug risk starts — with clear, plain-English reasons." />
+                  </div>
                 </div>
-              </Card>
-            ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* 3) Token purchase + verification */}
-        <section className="mt-14">
-          <div className="text-[11px] font-semibold tracking-wide text-emerald-300/90">
-            ACCESS & VERIFICATION
-          </div>
-          <h2 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight">
-            Simple, transparent access
-          </h2>
-          <p className="mt-2 text-sm md:text-base text-white/65 max-w-3xl">
-            Premium bot access is planned to be unlocked by holding{" "}
-            <span className="text-emerald-200 font-semibold">${BRAND.token}</span> on Solana.
-            Verification uses safe message-signing only (no transactions).
-          </p>
+        {/* WHAT IT IS / ISN'T */}
+        <section id="what" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">What SproutPulse is (and isn’t)</h2>
+            <p className="mt-3 max-w-3xl text-white/70">
+              SproutPulse is designed to reduce avoidable mistakes by making risk easier to see and easier to
+              understand.
+            </p>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {accessSteps.map((s) => (
-              <Card key={s.title}>
-                <div className="text-sm font-semibold">{s.title}</div>
-                <p className="mt-2 text-sm text-white/70">{s.body}</p>
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              <Card title="SproutPulse is">
+                <ul className="space-y-3 text-sm text-white/70">
+                  <li>• A collection of tools that analyse on-chain data</li>
+                  <li>• Built to highlight risk, behaviour, and anomalies</li>
+                  <li>• Designed for everyday crypto users — not insiders</li>
+                  <li>• Honest about uncertainty and volatility</li>
+                </ul>
               </Card>
-            ))}
-          </div>
 
-          <div className="mt-6 flex flex-col sm:flex-row gap-3">
-            <Button className="w-full sm:w-auto" variant="secondary" href="/verify">
-              Verify Wallet
-            </Button>
-            <Button className="w-full sm:w-auto" href={BRAND.telegramGroupUrl}>
-              Open Telegram
-            </Button>
-            <Button className="w-full sm:w-auto" variant="secondary" href="/whitepaper">
-              Read Whitepaper
-            </Button>
-          </div>
+              <Card title="SproutPulse is not">
+                <ul className="space-y-3 text-sm text-white/70">
+                  <li>• Financial advice</li>
+                  <li>• A signal group telling you what to buy</li>
+                  <li>• A promise of profit</li>
+                  <li>• A replacement for your own judgement</li>
+                </ul>
+              </Card>
+            </div>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-sm text-white/70">
-            <span className="font-semibold text-white/85">Safety reminder:</span>{" "}
-            We will never ask for your seed phrase. Verification uses message signing only.
-          </div>
-
-          <div className="mt-4 text-xs text-white/45">
-            Token mint and buy link will be added after launch: <span className="text-white/60">{BRAND.sproutMint}</span>
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p className="text-sm text-white/70">
+                <span className="text-white">Crypto is risky.</span> Our goal is to help you{" "}
+                <span className="text-white">see more clearly</span> — not pretend risk doesn’t exist.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="mt-16 text-center text-xs text-white/40 px-4">
-          © {new Date().getFullYear()} {BRAND.name} — Informational only • Not financial advice
-        </footer>
+        {/* AIMS */}
+        <section id="aims" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Our aims</h2>
+
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              <Feature
+                title="Reduce avoidable mistakes"
+                desc="By flagging common red flags before people commit capital."
+              />
+              <Feature
+                title="Explain risk in plain English"
+                desc="Not technical jargon. Not scare tactics. Just clear reasoning."
+              />
+              <Feature
+                title="Support smarter decisions"
+                desc="You stay in control. We provide context, not commands."
+              />
+              <Feature title="Stay independent" desc="No paid token promotions. No hidden incentives." />
+            </div>
+
+            <p className="mt-8 max-w-3xl text-sm text-white/60">
+              SproutPulse grows slowly, intentionally, and transparently.
+            </p>
+          </div>
+        </section>
+
+        {/* BOTS (Main page: 3-bullet cards) */}
+        <section id="bots" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Telegram bots</h2>
+                <p className="mt-2 max-w-3xl text-white/70">
+                  Practical tools, not hype machines. Each bot focuses on one clear job — with explanations you can
+                  understand.
+                </p>
+              </div>
+
+              <div className="mt-4 md:mt-0">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/60" />
+                  Built for research • Not advice
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              <BotCard3
+                icon="🔍"
+                title="Revival Radar"
+                purpose="Identify tokens showing genuine signs of revival — not artificial pumps."
+                bullets={[
+                  "Tracks volume, liquidity, and holder behaviour on dormant tokens",
+                  "Highlights organic recovery signals over time",
+                  "Designed to explore possibility, not predict outcomes",
+                ]}
+              />
+
+              <BotCard3
+                icon="📈"
+                title="Pump Professor"
+                purpose="Add early risk context to new launches and graduation events."
+                bullets={[
+                  "Watches new launches and graduations for early warning signs",
+                  "Flags common red flags (concentration, suspicious early behaviour)",
+                  "Designed to reduce blind chasing — not to promise “safe gems”",
+                ]}
+              />
+
+              <BotCard3
+                icon="🛑"
+                title="Risk Roots"
+                purpose="Identify where risk begins and explain it clearly."
+                bullets={[
+                  "Checks permissions, liquidity structure, and holder concentration",
+                  "Flags behavioural patterns commonly seen before rugs or hard exits",
+                  "Explains why risk exists — not just a score",
+                ]}
+              />
+            </div>
+
+            <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p className="text-sm text-white/70">
+                <span className="text-white">Reminder:</span> These tools are educational and informational only — not
+                financial advice. You stay in control.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* TRANSPARENCY */}
+        <section id="transparency" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Transparency & risk disclaimer</h2>
+
+            <div className="mt-6 grid gap-5 md:grid-cols-2">
+              <Card title="Reality check">
+                <p className="text-sm text-white/70">
+                  Cryptocurrency markets are volatile and unpredictable. SproutPulse provides educational and
+                  informational tools only — it does not provide financial advice.
+                </p>
+              </Card>
+
+              <Card title="As-is tools">
+                <ul className="space-y-3 text-sm text-white/70">
+                  <li>• No guarantees of accuracy or outcomes</li>
+                  <li>• No promises of profit</li>
+                  <li>• Not a replacement for personal research</li>
+                </ul>
+              </Card>
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
+              <p className="text-sm text-white/70">If something looks risky — it probably is.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* PHILOSOPHY / CTA */}
+        <section className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-7 md:p-10">
+              <p className="text-lg font-semibold text-white md:text-xl">
+                “Slow growth is healthy. Clarity beats hype. Tools should empower users — not exploit them.”
+              </p>
+              <p className="mt-3 max-w-3xl text-sm text-white/70">
+                SproutPulse is being built quietly, with care, for people who want fewer surprises and more
+                understanding.
+              </p>
+
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#bots"
+                  className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:opacity-90"
+                >
+                  Explore the bots
+                </a>
+                <a
+                  href="#what"
+                  className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                >
+                  Read the principles
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
+
+      <footer className="border-t border-white/10">
+        <div className="mx-auto max-w-6xl px-4 py-8">
+          <div className="flex flex-col gap-2 text-sm text-white/60 md:flex-row md:items-center md:justify-between">
+            <div>© {new Date().getFullYear()} SproutPulse</div>
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              <span>Educational tools only • Not financial advice</span>
+              <span className="hidden md:inline">•</span>
+              <span>Built quietly • Tools over hype</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
 
-/* =======================
-   Routes
-======================= */
-export default function App() {
+/* ---------- small presentational components ---------- */
+
+function Card({ title, children }) {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/whitepaper" element={<Whitepaper />} />
-      <Route path="/verify" element={<Verify />} />
-    </Routes>
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+      <div className="text-sm font-semibold text-white">{title}</div>
+      <div className="mt-3">{children}</div>
+    </div>
   );
 }
+
+function Feature({ title, desc }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+      <div className="text-sm font-semibold text-white">{title}</div>
+      <p className="mt-2 text-sm text-white/70">{desc}</p>
+    </div>
+  );
+}
+
+function BotCard3({ icon, title, purpose, bullets }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="text-sm font-semibold text-white">{title}</div>
+          <p className="mt-2 text-sm text-white/70">{purpose}</p>
+        </div>
+        <div className="text-xl">{icon}</div>
+      </div>
+
+      <ul className="mt-4 space-y-2 text-sm text-white/70">
+        {bullets.map((b) => (
+          <li key={b} className="flex gap-2">
+            <span className="mt-0.5 text-white/50">•</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function MiniCard({ title, desc }) {
+  return (
+    <div className="rounded-xl border border-white/10 bg-neutral-950/40 p-4">
+      <div className="text-xs font-semibold text-white/80">{title}</div>
+      <p className="mt-1 text-xs text-white/60">{desc}</p>
+    </div>
+  );
+}
+
+function StatPill({ title, desc }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+      <div className="text-xs font-semibold text-white">{title}</div>
+      <div className="mt-1 text-xs text-white/60">{desc}</div>
+    </div>
+  );
+}
+
+
+

@@ -1,11 +1,37 @@
 // src/App.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./assets/sproutpulse-logo.png";
 
 const TELEGRAM_GROUP_URL = "https://t.me/+SgbrMPeiWqY5MmVk";
 const CONTACT_EMAIL = "sproutpulse@proton.me";
 
 export default function App() {
+  // Subtle parallax for hero background
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    let rafId = null;
+
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        setScrollY(window.scrollY || 0);
+        rafId = null;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  // Parallax tuning (very subtle + capped)
+  const parallaxY = Math.min(scrollY * 0.12, 60);
+
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-50">
       {/* HEADER */}
@@ -64,17 +90,33 @@ export default function App() {
       <main>
         {/* HERO */}
         <section className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 opacity-30">
+          {/* Parallax background layer */}
+          <div
+            className="absolute inset-0 will-change-transform"
+            style={{
+              backgroundImage: "url(/images/sproutback.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              transform: `translate3d(0, ${parallaxY}px, 0) scale(1.06)`,
+            }}
+          />
+
+          {/* Dark overlay for readability */}
+          <div className="absolute inset-0 bg-neutral-950/70" />
+
+          {/* Soft glow accents */}
+          <div className="pointer-events-none absolute inset-0 opacity-30 z-[1]">
             <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
             <div className="absolute -bottom-40 left-1/4 h-[420px] w-[420px] rounded-full bg-white/5 blur-3xl" />
           </div>
 
-          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+          <div className="relative z-10 mx-auto max-w-6xl px-4 py-14 md:py-20">
             <div className="grid gap-10 md:grid-cols-12 md:items-center">
               {/* LEFT */}
               <div className="md:col-span-7">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
-                  <span className="h-1.5 w-1.5 rounded-full bg-white/60" />
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80 backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
                   Building quietly • Tools over hype
                 </div>
 
@@ -82,7 +124,7 @@ export default function App() {
                   Understand crypto risk — without the hype.
                 </h1>
 
-                <p className="mt-4 text-lg text-white/70 md:text-xl">
+                <p className="mt-4 text-lg text-white/80 md:text-xl">
                   <span className="text-white">SproutPulse helps you understand crypto risk</span>, not chase hype. We
                   build simple, transparent tools that add clarity so you can make{" "}
                   <span className="text-white">your own</span> informed decisions.
@@ -97,7 +139,7 @@ export default function App() {
                   </a>
                   <a
                     href="#bots"
-                    className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                    className="rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white hover:bg-white/15 backdrop-blur"
                   >
                     See the Telegram bots
                   </a>
@@ -112,14 +154,14 @@ export default function App() {
 
               {/* RIGHT */}
               <div className="md:col-span-5">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur">
                   <div className="text-sm font-semibold text-white">SproutPulse principle</div>
-                  <p className="mt-2 text-sm text-white/70">
+                  <p className="mt-2 text-sm text-white/80">
                     “SproutPulse doesn’t tell you what to buy. It helps you understand what you’re looking at.”
                   </p>
 
                   {/* VIDEO (from /public) */}
-                  <div className="mt-4 overflow-hidden rounded-xl border border-white/10 bg-neutral-950/40">
+                  <div className="mt-4 overflow-hidden rounded-xl border border-white/15 bg-neutral-950/40">
                     <video
                       src="/sproutpulsebanvid.mp4"
                       className="w-full h-full object-contain"
@@ -131,9 +173,9 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="mt-4 rounded-xl border border-white/10 bg-neutral-950/40 p-4">
-                    <div className="text-xs font-semibold text-white/80">Quick disclaimer</div>
-                    <p className="mt-2 text-xs text-white/60">
+                  <div className="mt-4 rounded-xl border border-white/15 bg-neutral-950/40 p-4">
+                    <div className="text-xs font-semibold text-white/90">Quick disclaimer</div>
+                    <p className="mt-2 text-xs text-white/70">
                       Educational tools only. Not financial advice. You stay in control.
                     </p>
                   </div>
@@ -205,7 +247,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* BOTS (3-bullet cards) */}
+        {/* BOTS */}
         <section id="bots" className="border-t border-white/10">
           <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
             <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
@@ -579,7 +621,7 @@ function BotCard3({ icon, title, purpose, bullets }) {
 
 function MiniCard({ title, desc }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-neutral-950/40 p-4">
+    <div className="rounded-xl border border-white/10 bg-neutral-950/40 p-4 backdrop-blur">
       <div className="text-xs font-semibold text-white/80">{title}</div>
       <p className="mt-1 text-xs text-white/60">{desc}</p>
     </div>
@@ -588,9 +630,9 @@ function MiniCard({ title, desc }) {
 
 function StatPill({ title, desc }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+    <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur">
       <div className="text-xs font-semibold text-white">{title}</div>
-      <div className="mt-1 text-xs text-white/60">{desc}</div>
+      <div className="mt-1 text-xs text-white/70">{desc}</div>
     </div>
   );
 }
@@ -608,5 +650,6 @@ function FaqItem({ q, a }) {
     </details>
   );
 }
+
 
 

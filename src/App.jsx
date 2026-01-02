@@ -104,7 +104,7 @@ export default function App() {
                   {/* VIDEO (from /public) */}
                   <div className="mt-4 overflow-hidden rounded-xl border border-white/10 bg-neutral-950/40">
                     <video
-                      src="/sproutpulse-site/sproutpulsebanvid.mp4"
+                      src="/sproutpulsebanvid.mp4"
                       className="w-full h-full object-contain"
                       autoPlay
                       loop
@@ -388,3 +388,4 @@ function StatPill({ title, desc }) {
     </div>
   );
 }
+

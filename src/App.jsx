@@ -1,4 +1,6 @@
+// src/App.jsx
 import React from "react";
+import logo from "./assets/sproutpulse-logo.png";
 
 export default function App() {
   return (
@@ -8,7 +10,7 @@ export default function App() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
             <img
-              src="/logo.png"
+              src={logo}
               alt="SproutPulse"
               className="h-9 w-9 rounded-xl ring-1 ring-white/10 object-contain bg-white/5 p-1"
             />
@@ -19,10 +21,18 @@ export default function App() {
           </div>
 
           <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
-            <a href="#what" className="hover:text-white">What it is</a>
-            <a href="#aims" className="hover:text-white">Aims</a>
-            <a href="#bots" className="hover:text-white">Bots</a>
-            <a href="#transparency" className="hover:text-white">Transparency</a>
+            <a href="#what" className="hover:text-white">
+              What it is
+            </a>
+            <a href="#aims" className="hover:text-white">
+              Aims
+            </a>
+            <a href="#bots" className="hover:text-white">
+              Bots
+            </a>
+            <a href="#transparency" className="hover:text-white">
+              Transparency
+            </a>
           </nav>
 
           <a
@@ -44,6 +54,7 @@ export default function App() {
 
           <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
             <div className="grid gap-10 md:grid-cols-12 md:items-center">
+              {/* LEFT */}
               <div className="md:col-span-7">
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
                   <span className="h-1.5 w-1.5 rounded-full bg-white/60" />
@@ -55,8 +66,8 @@ export default function App() {
                 </h1>
 
                 <p className="mt-4 text-lg text-white/70 md:text-xl">
-                  <span className="text-white">SproutPulse helps you understand crypto risk</span>, not chase hype.
-                  We build simple, transparent tools that add clarity so you can make{" "}
+                  <span className="text-white">SproutPulse helps you understand crypto risk</span>, not chase hype. We
+                  build simple, transparent tools that add clarity so you can make{" "}
                   <span className="text-white">your own</span> informed decisions.
                 </p>
 
@@ -82,7 +93,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* RIGHT PANEL */}
+              {/* RIGHT */}
               <div className="md:col-span-5">
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
                   <div className="text-sm font-semibold text-white">SproutPulse principle</div>
@@ -90,10 +101,10 @@ export default function App() {
                     “SproutPulse doesn’t tell you what to buy. It helps you understand what you’re looking at.”
                   </p>
 
-                  {/* VIDEO */}
+                  {/* VIDEO (from /public) */}
                   <div className="mt-4 overflow-hidden rounded-xl border border-white/10 bg-neutral-950/40">
                     <video
-                      src="/sproutvid1.mp4"
+                      src="/sproutpulse-site/sproutpulsebanvid.mp4"
                       className="w-full h-full object-contain"
                       autoPlay
                       loop
@@ -112,7 +123,7 @@ export default function App() {
 
                   <div className="mt-4 grid gap-3">
                     <MiniCard title="Revival Radar" desc="Spots genuine revival signals in dormant tokens." />
-                    <MiniCard title="Pump Professor" desc="Adds early risk context to new launches." />
+                    <MiniCard title="Pump Professor" desc="Adds early risk context to new launches and graduations." />
                     <MiniCard title="Risk Roots" desc="Shows where structural and behavioural risk begins." />
                   </div>
                 </div>
@@ -122,97 +133,238 @@ export default function App() {
         </section>
 
         {/* WHAT */}
-        <Section id="what" title="What SproutPulse is (and isn’t)">
-          <p className="text-white/70 max-w-3xl">
-            SproutPulse is designed to reduce avoidable mistakes by making crypto risk easier to see and easier to understand.
-          </p>
-        </Section>
+        <section id="what" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">What SproutPulse is (and isn’t)</h2>
+            <p className="mt-3 max-w-3xl text-white/70">
+              SproutPulse is designed to reduce avoidable mistakes by making crypto risk easier to see and easier to
+              understand.
+            </p>
+
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              <Card title="SproutPulse is">
+                <ul className="space-y-3 text-sm text-white/70">
+                  <li>• A collection of tools that analyse on-chain data</li>
+                  <li>• Built to highlight risk, behaviour, and anomalies</li>
+                  <li>• Designed for everyday crypto users — not insiders</li>
+                  <li>• Honest about uncertainty and volatility</li>
+                </ul>
+              </Card>
+
+              <Card title="SproutPulse is not">
+                <ul className="space-y-3 text-sm text-white/70">
+                  <li>• Financial advice</li>
+                  <li>• A signal group telling you what to buy</li>
+                  <li>• A promise of profit</li>
+                  <li>• A replacement for your own judgement</li>
+                </ul>
+              </Card>
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p className="text-sm text-white/70">
+                <span className="text-white">Crypto is risky.</span> Our goal is to help you{" "}
+                <span className="text-white">see more clearly</span> — not pretend risk doesn’t exist.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* AIMS */}
-        <Section id="aims" title="Our aims">
-          <div className="grid gap-5 md:grid-cols-2">
-            <Feature title="Reduce avoidable mistakes" desc="By highlighting common red flags early." />
-            <Feature title="Explain risk clearly" desc="Plain English, no scare tactics." />
-            <Feature title="Support better decisions" desc="Context, not commands." />
-            <Feature title="Stay independent" desc="No paid promotions or hidden incentives." />
-          </div>
-        </Section>
+        <section id="aims" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Our aims</h2>
 
-        {/* BOTS */}
-        <Section id="bots" title="Telegram bots">
-          <div className="grid gap-5 md:grid-cols-3">
-            <BotCard
-              title="Revival Radar"
-              bullets={[
-                "Tracks volume, liquidity, and holder behaviour",
-                "Highlights organic revival signals",
-                "Explores possibility — not predictions",
-              ]}
-            />
-            <BotCard
-              title="Pump Professor"
-              bullets={[
-                "Monitors new launches and graduations",
-                "Flags early concentration and suspicious behaviour",
-                "Reduces blind chasing — no safe-gem claims",
-              ]}
-            />
-            <BotCard
-              title="Risk Roots"
-              bullets={[
-                "Checks permissions, liquidity structure, and holders",
-                "Flags patterns seen before rugs or hard exits",
-                "Explains why risk exists — not just a score",
-              ]}
-            />
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              <Feature title="Reduce avoidable mistakes" desc="By highlighting common red flags early." />
+              <Feature title="Explain risk clearly" desc="Plain English, no scare tactics." />
+              <Feature title="Support better decisions" desc="Context, not commands." />
+              <Feature title="Stay independent" desc="No paid promotions or hidden incentives." />
+            </div>
+
+            <p className="mt-8 max-w-3xl text-sm text-white/60">
+              SproutPulse grows slowly, intentionally, and transparently.
+            </p>
           </div>
-        </Section>
+        </section>
+
+        {/* BOTS (3-bullet cards) */}
+        <section id="bots" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Telegram bots</h2>
+                <p className="mt-2 max-w-3xl text-white/70">
+                  Practical tools, not hype machines. Each bot focuses on one clear job — with explanations you can
+                  understand.
+                </p>
+              </div>
+
+              <div className="mt-4 md:mt-0">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/60" />
+                  Built for research • Not advice
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              <BotCard3
+                icon="🔍"
+                title="Revival Radar"
+                purpose="Identify tokens showing genuine signs of revival — not artificial pumps."
+                bullets={[
+                  "Tracks volume, liquidity, and holder behaviour on dormant tokens",
+                  "Highlights organic revival signals over time",
+                  "Designed to explore possibility, not predict outcomes",
+                ]}
+              />
+
+              <BotCard3
+                icon="📈"
+                title="Pump Professor"
+                purpose="Add early risk context to new launches and graduation events."
+                bullets={[
+                  "Monitors new launches and graduations for early warning signs",
+                  "Flags early concentration and suspicious behaviour",
+                  "Designed to reduce blind chasing — not to promise “safe gems”",
+                ]}
+              />
+
+              <BotCard3
+                icon="🛑"
+                title="Risk Roots"
+                purpose="Identify where risk begins and explain it clearly."
+                bullets={[
+                  "Checks permissions, liquidity structure, and holder concentration",
+                  "Flags patterns commonly seen before rugs or hard exits",
+                  "Explains why risk exists — not just a score",
+                ]}
+              />
+            </div>
+
+            <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p className="text-sm text-white/70">
+                <span className="text-white">Reminder:</span> These tools are educational and informational only — not
+                financial advice. You stay in control.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* TRANSPARENCY */}
-        <Section id="transparency" title="Transparency & disclaimer">
-          <p className="text-white/70 max-w-3xl">
-            Cryptocurrency markets are volatile and unpredictable. SproutPulse provides educational and informational
-            tools only and does not offer financial advice.
-          </p>
-        </Section>
+        <section id="transparency" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Transparency & disclaimer</h2>
+
+            <div className="mt-6 grid gap-5 md:grid-cols-2">
+              <Card title="Reality check">
+                <p className="text-sm text-white/70">
+                  Cryptocurrency markets are volatile and unpredictable. SproutPulse provides educational and
+                  informational tools only — it does not provide financial advice.
+                </p>
+              </Card>
+
+              <Card title="As-is tools">
+                <ul className="space-y-3 text-sm text-white/70">
+                  <li>• No guarantees of accuracy or outcomes</li>
+                  <li>• No promises of profit</li>
+                  <li>• Not a replacement for personal research</li>
+                </ul>
+              </Card>
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
+              <p className="text-sm text-white/70">If something looks risky — it probably is.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* PHILOSOPHY / CTA */}
+        <section className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-7 md:p-10">
+              <p className="text-lg font-semibold text-white md:text-xl">
+                “Slow growth is healthy. Clarity beats hype. Tools should empower users — not exploit them.”
+              </p>
+              <p className="mt-3 max-w-3xl text-sm text-white/70">
+                SproutPulse is being built quietly, with care, for people who want fewer surprises and more
+                understanding.
+              </p>
+
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#bots"
+                  className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 hover:opacity-90"
+                >
+                  Explore the bots
+                </a>
+                <a
+                  href="#what"
+                  className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
+                >
+                  Read the principles
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer className="border-t border-white/10 py-8 text-center text-sm text-white/60">
-        © {new Date().getFullYear()} SproutPulse • Tools over hype
+      {/* FOOTER */}
+      <footer className="border-t border-white/10">
+        <div className="mx-auto max-w-6xl px-4 py-8">
+          <div className="flex flex-col gap-2 text-sm text-white/60 md:flex-row md:items-center md:justify-between">
+            <div>© {new Date().getFullYear()} SproutPulse</div>
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              <span>Educational tools only • Not financial advice</span>
+              <span className="hidden md:inline">•</span>
+              <span>Built quietly • Tools over hype</span>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
 }
 
-/* COMPONENTS */
+/* ---------- small presentational components ---------- */
 
-function Section({ id, title, children }) {
+function Card({ title, children }) {
   return (
-    <section id={id} className="border-t border-white/10">
-      <div className="mx-auto max-w-6xl px-4 py-14">
-        <h2 className="text-2xl font-bold md:text-3xl mb-6">{title}</h2>
-        {children}
-      </div>
-    </section>
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+      <div className="text-sm font-semibold text-white">{title}</div>
+      <div className="mt-3">{children}</div>
+    </div>
   );
 }
 
 function Feature({ title, desc }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
-      <div className="font-semibold">{title}</div>
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+      <div className="text-sm font-semibold text-white">{title}</div>
       <p className="mt-2 text-sm text-white/70">{desc}</p>
     </div>
   );
 }
 
-function BotCard({ title, bullets }) {
+function BotCard3({ icon, title, purpose, bullets }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
-      <div className="font-semibold">{title}</div>
-      <ul className="mt-3 space-y-2 text-sm text-white/70">
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="text-sm font-semibold text-white">{title}</div>
+          <p className="mt-2 text-sm text-white/70">{purpose}</p>
+        </div>
+        <div className="text-xl">{icon}</div>
+      </div>
+
+      <ul className="mt-4 space-y-2 text-sm text-white/70">
         {bullets.map((b) => (
-          <li key={b}>• {b}</li>
+          <li key={b} className="flex gap-2">
+            <span className="mt-0.5 text-white/50">•</span>
+            <span>{b}</span>
+          </li>
         ))}
       </ul>
     </div>
@@ -221,22 +373,18 @@ function BotCard({ title, bullets }) {
 
 function MiniCard({ title, desc }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-neutral-950/40 p-3">
-      <div className="text-xs font-semibold">{title}</div>
-      <p className="text-xs text-white/60 mt-1">{desc}</p>
+    <div className="rounded-xl border border-white/10 bg-neutral-950/40 p-4">
+      <div className="text-xs font-semibold text-white/80">{title}</div>
+      <p className="mt-1 text-xs text-white/60">{desc}</p>
     </div>
   );
 }
 
 function StatPill({ title, desc }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <div className="text-xs font-semibold">{title}</div>
-      <div className="text-xs text-white/60 mt-1">{desc}</div>
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+      <div className="text-xs font-semibold text-white">{title}</div>
+      <div className="mt-1 text-xs text-white/60">{desc}</div>
     </div>
   );
 }
-
-
-
-

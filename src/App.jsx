@@ -9,6 +9,9 @@ export default function App() {
   // Subtle parallax for hero background
   const [scrollY, setScrollY] = useState(0);
 
+  // Mobile menu
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     let rafId = null;
 
@@ -41,14 +44,20 @@ export default function App() {
             <img
               src={logo}
               alt="SproutPulse"
-              className="h-9 w-9 rounded-xl ring-1 ring-white/10 object-contain bg-white/5 p-1"
+              className="h-10 w-10 rounded-xl ring-1 ring-white/10 object-contain bg-white/5 p-1"
             />
             <div className="leading-tight">
-              <div className="text-sm font-semibold tracking-wide">SproutPulse</div>
-              <div className="text-xs text-white/60">Calm signals in a noisy market</div>
+              {/* Bigger brand name */}
+              <div className="text-base font-extrabold tracking-wide sm:text-lg">
+                SproutPulse
+              </div>
+              <div className="text-xs text-white/60 sm:text-sm">
+                Calm signals in a noisy market
+              </div>
             </div>
           </div>
 
+          {/* Desktop nav */}
           <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
             <a href="#what" className="hover:text-white">
               What it is
@@ -68,23 +77,81 @@ export default function App() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a
-              href="#bots"
-              className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-neutral-950 hover:opacity-90"
-            >
-              Explore the bots
-            </a>
+            {/* Desktop CTAs */}
+            <div className="hidden items-center gap-2 md:flex">
+              <a
+                href="#bots"
+                className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-neutral-950 hover:opacity-90"
+              >
+                Explore the bots
+              </a>
 
-            <a
-              href={TELEGRAM_GROUP_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
+              <a
+                href={TELEGRAM_GROUP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
+              >
+                Join Telegram
+              </a>
+            </div>
+
+            {/* Mobile menu button */}
+            <button
+              type="button"
+              className="md:hidden rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm font-semibold text-white hover:bg-white/10"
+              onClick={() => setMobileMenuOpen((v) => !v)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
             >
-              Join Telegram
-            </a>
+              {mobileMenuOpen ? "Close" : "Menu"}
+            </button>
           </div>
         </div>
+
+        {/* Mobile dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-white/10 bg-neutral-950/90 backdrop-blur">
+            <div className="mx-auto max-w-6xl px-4 py-3">
+              <div className="grid gap-2 text-sm">
+                {[
+                  ["#what", "What it is"],
+                  ["#aims", "Aims"],
+                  ["#bots", "Bots"],
+                  ["#access", "Access"],
+                  ["#transparency", "Transparency"],
+                ].map(([href, label]) => (
+                  <a
+                    key={href}
+                    href={href}
+                    className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/80 hover:bg-white/10 hover:text-white"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {label}
+                  </a>
+                ))}
+
+                <a
+                  href={TELEGRAM_GROUP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white/80 hover:bg-white/10 hover:text-white"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Join Telegram
+                </a>
+
+                <a
+                  href="#bots"
+                  className="rounded-xl bg-white px-4 py-3 text-center font-semibold text-neutral-950 hover:opacity-90"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Explore the bots
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       <main>
@@ -650,6 +717,7 @@ function FaqItem({ q, a }) {
     </details>
   );
 }
+
 
 
 

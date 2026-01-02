@@ -2,6 +2,9 @@
 import React from "react";
 import logo from "./assets/sproutpulse-logo.png";
 
+const TELEGRAM_GROUP_URL = "https://t.me/+SgbrMPeiWqY5MmVk";
+const CONTACT_EMAIL = "sproutpulse@proton.me";
+
 export default function App() {
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-50">
@@ -30,17 +33,31 @@ export default function App() {
             <a href="#bots" className="hover:text-white">
               Bots
             </a>
+            <a href="#access" className="hover:text-white">
+              Access
+            </a>
             <a href="#transparency" className="hover:text-white">
               Transparency
             </a>
           </nav>
 
-          <a
-            href="#bots"
-            className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-neutral-950 hover:opacity-90"
-          >
-            Explore the bots
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="#bots"
+              className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-neutral-950 hover:opacity-90"
+            >
+              Explore the bots
+            </a>
+
+            <a
+              href={TELEGRAM_GROUP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
+            >
+              Join Telegram
+            </a>
+          </div>
         </div>
       </header>
 
@@ -252,6 +269,169 @@ export default function App() {
           </div>
         </section>
 
+        {/* ACCESS */}
+        <section id="access" className="border-t border-white/10">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+              How do I get access to the Telegram bots?
+            </h2>
+
+            <p className="mt-3 max-w-3xl text-white/70">
+              SproutPulse uses a simple, transparent access model. Holding <span className="text-white">$SPROUT</span>{" "}
+              in a verified wallet unlocks access to the Telegram bots.
+            </p>
+
+            {/* TOKEN CARD */}
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <div className="text-sm font-semibold text-white">$SPROUT Token</div>
+                  <p className="mt-2 max-w-2xl text-sm text-white/70">
+                    $SPROUT is a utility token used exclusively for access to SproutPulse tools. It is not promoted as
+                    an investment and carries no promises or guarantees.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-white/10 bg-neutral-950/40 px-4 py-3">
+                  <div className="text-xs text-white/60">Contract address</div>
+                  <div className="mt-1 font-mono text-sm text-white">TBC</div>
+                </div>
+              </div>
+
+              <ul className="mt-5 grid gap-3 text-sm text-white/70 md:grid-cols-3">
+                <li>• Utility-based access only</li>
+                <li>• No paid promotions or shilling</li>
+                <li>• Designed for long-term sustainability</li>
+              </ul>
+            </div>
+
+            {/* WHY TOKEN */}
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
+              <div className="text-sm font-semibold text-white">Why do we use a Solana token?</div>
+
+              <p className="mt-2 text-sm text-white/70">
+                SproutPulse uses <span className="text-white">$SPROUT</span> as a simple, transparent way to manage
+                access to tools and build a genuine community — without subscriptions, ads, or aggressive monetisation.
+              </p>
+
+              <ul className="mt-4 space-y-2 text-sm text-white/70">
+                <li>
+                  • <span className="text-white">Access without subscriptions:</span> holding $SPROUT allows users to
+                  access the Telegram bots without recurring monthly payments.
+                </li>
+                <li>
+                  • <span className="text-white">Anti-spam & fairness:</span> token-based access helps prevent abuse
+                  while keeping tools available to real users.
+                </li>
+                <li>
+                  • <span className="text-white">Community alignment:</span> the token enables optional holder
+                  incentives, competitions, and community-led initiatives over time.
+                </li>
+              </ul>
+
+              <p className="mt-4 text-xs text-white/60">
+                $SPROUT is a utility token used for access and community participation. It is not promoted as an
+                investment and carries no guarantees.
+              </p>
+            </div>
+
+            {/* STEPS */}
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div className="text-sm font-semibold text-white">1. Hold $SPROUT</div>
+                <p className="mt-2 text-sm text-white/70">
+                  Hold $SPROUT in a wallet you control. The required holding amount will be clearly communicated once
+                  the token is live.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div className="text-sm font-semibold text-white">2. Verify your wallet</div>
+                <p className="mt-2 text-sm text-white/70">
+                  Verify ownership by signing a message. This does <span className="text-white">not</span> involve
+                  spending funds or granting permissions.
+                </p>
+                <ul className="mt-3 space-y-2 text-xs text-white/60">
+                  <li>• No transactions</li>
+                  <li>• No approvals</li>
+                  <li>• No custody of assets</li>
+                </ul>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div className="text-sm font-semibold text-white">3. Link Telegram</div>
+                <p className="mt-2 text-sm text-white/70">
+                  Link your Telegram account using a one-time code. Access remains active while your wallet meets the
+                  holding requirement.
+                </p>
+                <p className="mt-3 text-xs text-white/60">
+                  Join the community here:{" "}
+                  <a
+                    href={TELEGRAM_GROUP_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-white underline hover:opacity-80"
+                  >
+                    Telegram group
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 rounded-2xl border border-white/10 bg-neutral-950/40 p-5">
+              <p className="text-sm text-white/70">
+                <span className="text-white">Note:</span> SproutPulse tools are provided for educational and
+                informational purposes only. Holding $SPROUT grants access to tools — it does not guarantee outcomes or
+                profits.
+              </p>
+            </div>
+
+            {/* FAQ */}
+            <div className="mt-10">
+              <h3 className="text-lg font-semibold text-white">Access FAQ</h3>
+              <p className="mt-2 max-w-3xl text-sm text-white/70">
+                Clear answers to common questions about $SPROUT, verification, and Telegram access.
+              </p>
+
+              <div className="mt-5 space-y-3">
+                <FaqItem
+                  q="Do I have to connect my wallet to use the bots?"
+                  a="Yes. Access is tied to holding $SPROUT in a wallet you control. Verification uses a wallet connection so we can confirm ownership and check holdings."
+                />
+                <FaqItem
+                  q="Will verification make me spend funds or approve anything?"
+                  a="No. Verification is a message signature only — no spending, no token approvals, and no custody. If a site ever asks for approvals for “verification”, treat it as a red flag."
+                />
+                <FaqItem
+                  q="What does “Contract address: TBC” mean?"
+                  a="It means the token contract address has not been published on the website yet. Once live, we’ll post the official address here and on our official channels. Always verify before interacting."
+                />
+                <FaqItem
+                  q="How much $SPROUT will I need to hold?"
+                  a="TBC. The minimum holding requirement will be clearly communicated once the token is live. We aim to keep access affordable and transparent."
+                />
+                <FaqItem
+                  q="What happens if I sell or move my $SPROUT?"
+                  a="Access is based on your verified wallet meeting the holding requirement. If your balance drops below the threshold, bot access may pause until the requirement is met again."
+                />
+                <FaqItem
+                  q="Can I verify one wallet and use a different wallet later?"
+                  a="You’ll need to verify the wallet that holds $SPROUT. If you change wallets, you’ll simply re-verify and re-link Telegram."
+                />
+                <FaqItem
+                  q="Does holding $SPROUT guarantee profits or safe tokens?"
+                  a="No. Holding $SPROUT grants access to research tools only. Crypto is risky and outcomes are never guaranteed."
+                />
+                <FaqItem
+                  q="How can I contact SproutPulse?"
+                  a={`For questions, support, or security-related issues, you can contact us at ${CONTACT_EMAIL}.`}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* TRANSPARENCY */}
         <section id="transparency" className="border-t border-white/10">
           <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
@@ -272,6 +452,16 @@ export default function App() {
                   <li>• Not a replacement for personal research</li>
                 </ul>
               </Card>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p className="text-sm text-white/70">
+                For general questions, support, or security-related concerns, you can contact us at{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-white underline hover:opacity-80">
+                  {CONTACT_EMAIL}
+                </a>
+                .
+              </p>
             </div>
 
             <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
@@ -300,10 +490,12 @@ export default function App() {
                   Explore the bots
                 </a>
                 <a
-                  href="#what"
+                  href={TELEGRAM_GROUP_URL}
+                  target="_blank"
+                  rel="noreferrer"
                   className="rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
                 >
-                  Read the principles
+                  Join Telegram
                 </a>
               </div>
             </div>
@@ -315,7 +507,21 @@ export default function App() {
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 py-8">
           <div className="flex flex-col gap-2 text-sm text-white/60 md:flex-row md:items-center md:justify-between">
-            <div>© {new Date().getFullYear()} SproutPulse</div>
+            <div className="flex flex-col gap-1">
+              <div>© {new Date().getFullYear()} SproutPulse</div>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-xs text-white/60 hover:text-white">
+                Contact: {CONTACT_EMAIL}
+              </a>
+              <a
+                href={TELEGRAM_GROUP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs text-white/60 hover:text-white"
+              >
+                Community: Telegram group
+              </a>
+            </div>
+
             <div className="flex flex-wrap gap-x-4 gap-y-1">
               <span>Educational tools only • Not financial advice</span>
               <span className="hidden md:inline">•</span>
@@ -388,4 +594,19 @@ function StatPill({ title, desc }) {
     </div>
   );
 }
+
+function FaqItem({ q, a }) {
+  return (
+    <details className="group rounded-2xl border border-white/10 bg-white/5 p-5">
+      <summary className="cursor-pointer list-none">
+        <div className="flex items-start justify-between gap-4">
+          <div className="text-sm font-semibold text-white">{q}</div>
+          <div className="mt-0.5 text-white/60 transition-transform duration-200 group-open:rotate-45">+</div>
+        </div>
+      </summary>
+      <p className="mt-3 text-sm text-white/70">{a}</p>
+    </details>
+  );
+}
+
 

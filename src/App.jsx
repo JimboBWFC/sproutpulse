@@ -2,60 +2,63 @@ import React from "react";
 
 const NAV_LINKS = [
   { label: "Product", href: "#product" },
-  { label: "Signals", href: "#signals" },
+  { label: "Tools", href: "#tools" },
   { label: "Status", href: "#status" },
   { label: "Roadmap", href: "#roadmap" },
   { label: "FAQ", href: "#faq" },
 ];
 
-const SIGNALS = [
+const TOOLS = [
   {
-    state: "IN TESTING",
-    title: "Revival Intelligence",
-    text: "Compare current activity with a token’s own recent history so renewed volume and improving structure stand out from ordinary noise.",
-    detail: "Historical baselines · MC & liquidity context · explainable tiers",
+    number: "01",
+    state: "CORE WORKING · AUTOMATION NEXT",
+    name: "Revival Radar",
+    question: "What has woken up?",
+    text: "Detect dormant or previously quiet tokens that begin showing meaningful renewed activity. Revival Radar compares what is happening now with the token’s own recent history so a genuine return of volume, liquidity and participation can stand out from a single noisy spike.",
+    detail: "Historical baselines · renewed volume · liquidity context · sustained activity",
   },
   {
-    state: "IN TESTING",
-    title: "Structure Intelligence",
-    text: "Review token-transfer patterns for signs of coordinated wallet splitting and suspicious distribution behaviour.",
-    detail: "Helius transfers · distribution checks · risk explanations",
+    number: "02",
+    state: "SCORING CORE WORKING · PRODUCT VIEW NEXT",
+    name: "Pump Professor",
+    question: "Is this worth a closer look?",
+    text: "Assess whether a token shows enough positive structural evidence to justify further research. Pump Professor looks at liquidity quality, market cap, transaction flow, activity and structure, then explains the evidence without telling the user to buy or avoid it.",
+    detail: "Structure quality · liquidity strength · trading flow · explainable assessment",
   },
   {
-    state: "WORKING CORE",
-    title: "Market Context",
-    text: "Read liquidity, market cap, volume and transaction flow together rather than treating a single number as a signal.",
-    detail: "DexScreener data · trade-count flow · observed change tracking",
-  },
-  {
-    state: "PLANNED",
-    title: "Connected Roots",
-    text: "Investigate how wallets, funding sources and token activity connect across a wider on-chain picture.",
-    detail: "Wallet relationships · funding paths · saved investigations",
+    number: "03",
+    state: "DEEP SCAN IN DEVELOPMENT",
+    name: "Signal Surgeon",
+    question: "What are you not being shown?",
+    text: "A deeper manual investigation designed to turn complex token behaviour into bespoke plain-English findings. Signal Surgeon will bring together market behaviour, wallet relationships, funding links and genuine social standing so users can investigate a token for themselves instead of relying on an influencer’s claim.",
+    detail: "Behaviour analysis · wallet links · social credibility · bespoke findings",
   },
 ];
 
 const STATUS = [
-  ["Working", "DexScreener market and liquidity data"],
-  ["Working", "Historical SQLite snapshots and validation state"],
-  ["Working", "Explainable three-tier scoring"],
+  ["Working", "DexScreener market, liquidity and transaction data"],
+  ["Working", "Historical SQLite snapshots and revival baselines"],
+  ["Working", "Explainable Seedling, Growth and Harvest scoring"],
   ["Working", "Helius-assisted transfer structure checks"],
-  ["In progress", "Automated discovery and watch behaviour"],
-  ["Planned", "Web workspace and Connected Roots"],
+  ["In progress", "Revival Radar automated discovery and watch behaviour"],
+  ["In progress", "Pump Professor research assessment experience"],
+  ["Planned", "Signal Surgeon expanded social and wallet investigation"],
+  ["Planned", "Connected Roots relationship mapping and web workspace"],
 ];
 
 const ROADMAP = [
-  ["01", "Now", "Strengthen the intelligence engine", "Finish separating data sources, scoring, storage and delivery so each layer is testable and reusable."],
-  ["02", "Next", "Build the web workspace", "Move beyond manual Telegram scans with token search, watchlists, history, alert review and investigation views."],
-  ["03", "Later", "Add deeper relationship intelligence", "Develop Connected Roots, stronger automated discovery and configurable alerts without turning SproutPulse into a hype feed."],
+  ["01", "Now", "Strengthen the intelligence engine", "Finish separating data sources, scoring, storage and delivery while preserving the working revival, scoring and structure logic."],
+  ["02", "Next", "Turn the three tools into web experiences", "Build Revival Radar discovery, Pump Professor assessment and Signal Surgeon investigation into a purpose-built workspace with history, watchlists and saved research."],
+  ["03", "Later", "Deepen the investigation layer", "Add Connected Roots, stronger wallet relationships, social credibility checks and configurable alerts without turning SproutPulse into another hype feed."],
 ];
 
 const FAQS = [
-  ["Is SproutPulse a trading bot?", "No. SproutPulse is an intelligence and research tool. It does not promise entries, exits or returns, and it is not designed to place trades for you."],
-  ["Does SproutPulse work only through Telegram?", "Telegram is the current delivery surface for the working prototype. The v2 architecture is being built so the same intelligence can power a web interface and other delivery channels."],
-  ["What can the current engine actually analyse?", "The current backend can combine DexScreener market and liquidity data, historical snapshots, transaction-flow context and Helius-assisted transfer-structure checks into explainable signal tiers."],
+  ["Is SproutPulse a trading bot?", "No. SproutPulse is an intelligence and research platform. It helps users discover, assess and investigate tokens, but it does not place trades or tell users what they must buy or sell."],
+  ["What are Revival Radar, Pump Professor and Signal Surgeon?", "They are three tools inside SproutPulse, each with a different job. Revival Radar looks for dormant tokens waking up, Pump Professor assesses tokens that may merit further research, and Signal Surgeon is the deeper manual investigation layer."],
+  ["Does SproutPulse work only through Telegram?", "No. Telegram is the current delivery surface for the working prototype. The v2 architecture is being built so the same intelligence can power a web workspace, alerts and future integrations."],
+  ["Will SproutPulse tell me whether to buy a token?", "No. The goal is to present relevant evidence, explain behaviour and highlight areas worth investigating so users can make their own decisions. SproutPulse is decision support, not financial advice."],
+  ["Why would I use Signal Surgeon instead of trusting a social post?", "Because social claims can leave out important context. Signal Surgeon is being designed to examine the token itself: behaviour, wallet links, funding relationships and the credibility of its wider social footprint."],
   ["How will access and pricing work?", "That is not finalised. The priority is proving the product and its reliability first. Access and pricing will be kept simple and decided after testing rather than forcing an early token-gated model."],
-  ["Is this financial advice?", "No. SproutPulse provides information to support your own research. Crypto markets are highly volatile and any signal still needs independent verification and judgement."],
 ];
 
 function SproutMark() {
@@ -126,21 +129,21 @@ export default function App() {
               </div>
 
               <h1 className="max-w-3xl text-5xl font-semibold leading-[0.97] tracking-[-0.05em] text-white sm:text-6xl lg:text-[4.6rem]">
-                On-chain intelligence without the noise.
+                Investigate before you speculate.
               </h1>
 
               <p className="mt-6 max-w-2xl text-base leading-7 text-white/62 sm:text-lg">
-                SproutPulse combines market activity, liquidity, transaction flow and wallet structure into clear signals you can investigate. Built to add context, not manufacture urgency.
+                SproutPulse helps you discover unusual activity, assess whether a token deserves a closer look, and investigate what sits behind the story being sold to you.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="#product" className="bg-emerald-300 px-5 py-3 text-center text-sm font-semibold text-[#06100c] transition hover:bg-emerald-200">See how it works</a>
+                <a href="#tools" className="bg-emerald-300 px-5 py-3 text-center text-sm font-semibold text-[#06100c] transition hover:bg-emerald-200">Explore the tools</a>
                 <a href="#status" className="border border-white/15 bg-black/20 px-5 py-3 text-center text-sm font-medium text-white/80 transition hover:border-white/25">Development status</a>
               </div>
 
-              <div className="mt-9 grid max-w-2xl grid-cols-2 border-y border-white/10 sm:grid-cols-4">
-                {["No predictions", "No paid-call hype", "Explainable signals", "Research first"].map((item) => (
-                  <div key={item} className="border-r border-white/10 px-3 py-3 text-[11px] uppercase tracking-[0.12em] text-white/42 last:border-r-0">{item}</div>
+              <div className="mt-9 grid max-w-2xl grid-cols-3 border-y border-white/10">
+                {["Discover", "Assess", "Investigate"].map((item) => (
+                  <div key={item} className="border-r border-white/10 px-3 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white/48 last:border-r-0">{item}</div>
                 ))}
               </div>
             </div>
@@ -150,13 +153,13 @@ export default function App() {
                 <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
                   <div>
                     <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-200/60">SproutPulse prototype</div>
-                    <div className="mt-1 text-sm text-white/75">Signal intelligence in motion</div>
+                    <div className="mt-1 text-sm text-white/75">Research intelligence in motion</div>
                   </div>
-                  <span className="text-[10px] uppercase tracking-[0.16em] text-white/35">Live concept</span>
+                  <span className="text-[10px] uppercase tracking-[0.16em] text-white/35">Active development</span>
                 </div>
                 <video src="/sproutpulsebanvid.mp4" autoPlay muted loop playsInline className="aspect-video w-full bg-black/40 object-contain" />
-                <div className="grid grid-cols-4 border-t border-white/10 text-center">
-                  {[["MC", "context"], ["LP", "quality"], ["Flow", "activity"], ["Wallets", "structure"]].map(([top, bottom]) => (
+                <div className="grid grid-cols-3 border-t border-white/10 text-center">
+                  {[["Radar", "discover"], ["Professor", "assess"], ["Surgeon", "investigate"]].map(([top, bottom]) => (
                     <div key={top} className="border-r border-white/10 px-2 py-3 last:border-r-0">
                       <div className="text-xs font-medium text-white/78">{top}</div>
                       <div className="mt-1 text-[10px] text-white/32">{bottom}</div>
@@ -171,16 +174,17 @@ export default function App() {
         <section id="product" className="scroll-mt-24 border-b border-white/8 bg-[#08130e]">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-12 lg:px-8">
             <div className="lg:col-span-5">
-              <SectionLabel>The product</SectionLabel>
-              <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">The intelligence is the product. Telegram is one way to receive it.</h2>
-              <p className="mt-5 max-w-xl text-sm leading-7 text-white/52 sm:text-base">SproutPulse began as a Telegram prototype. That proved the core idea, but v2 is being rebuilt around a reusable intelligence engine so the experience is not trapped inside a chat bot.</p>
+              <SectionLabel>The platform</SectionLabel>
+              <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">One intelligence engine. Different ways to question a token.</h2>
+              <p className="mt-5 max-w-xl text-sm leading-7 text-white/52 sm:text-base">SproutPulse is the overall research platform. Revival Radar, Pump Professor and Signal Surgeon are three tools within it, each designed for a different point in the user’s research process.</p>
             </div>
 
             <div className="lg:col-span-7">
               {[
-                ["CORE", "Intelligence engine", "Data, scoring, structure analysis and history live independently of the interface."],
-                ["NEXT", "Web workspace", "Token research, history, watchlists and investigations in a purpose-built interface."],
-                ["CURRENT DELIVERY", "Telegram", "Useful for quick scans and future alerts, but no longer treated as the whole product."],
+                ["DISCOVER", "Revival Radar", "Find dormant or quiet tokens where meaningful activity appears to be returning."],
+                ["ASSESS", "Pump Professor", "Surface structurally interesting tokens and explain why they may deserve more research."],
+                ["INVESTIGATE", "Signal Surgeon", "Dig deeper into behaviour, wallet relationships and the credibility of the wider story."],
+                ["SUPPORTING LAYER", "Connected Roots", "Visualise wallet and funding relationships when an investigation needs deeper context."],
               ].map(([label, title, text]) => (
                 <div key={title} className="grid gap-3 border-t border-white/10 py-5 sm:grid-cols-[9rem_1fr]">
                   <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-200/55">{label}</div>
@@ -194,27 +198,33 @@ export default function App() {
           </div>
         </section>
 
-        <section id="signals" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-20 lg:px-8 lg:py-24">
-          <div className="max-w-2xl">
-            <SectionLabel>Signal layers</SectionLabel>
-            <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">Context before conclusions.</h2>
-            <p className="mt-4 text-sm leading-7 text-white/50 sm:text-base">Each layer answers a different question. Together they help separate an interesting change from a number that merely looks exciting on its own.</p>
+        <section id="tools" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-20 lg:px-8 lg:py-24">
+          <div className="max-w-3xl">
+            <SectionLabel>Core tools</SectionLabel>
+            <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">Three tools. Three different jobs.</h2>
+            <p className="mt-4 text-sm leading-7 text-white/50 sm:text-base">None of them exists to make the decision for you. Their job is to surface evidence, explain context and help you decide what deserves your attention.</p>
           </div>
 
           <div className="mt-10 border-t border-white/10">
-            {SIGNALS.map((signal, index) => (
-              <article key={signal.title} className="grid gap-4 border-b border-white/10 py-7 md:grid-cols-[4rem_13rem_1fr] md:items-start">
-                <div className="font-mono text-xs text-emerald-200/40">0{index + 1}</div>
+            {TOOLS.map((tool) => (
+              <article key={tool.name} className="grid gap-5 border-b border-white/10 py-8 lg:grid-cols-[4rem_15rem_1fr] lg:items-start">
+                <div className="font-mono text-xs text-emerald-200/40">{tool.number}</div>
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-200/55">{signal.state}</div>
-                  <h3 className="mt-2 text-lg font-semibold text-white/86">{signal.title}</h3>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-200/55">{tool.state}</div>
+                  <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white/90">{tool.name}</h3>
+                  <p className="mt-2 text-sm font-medium text-emerald-100/65">{tool.question}</p>
                 </div>
                 <div>
-                  <p className="text-sm leading-6 text-white/50">{signal.text}</p>
-                  <p className="mt-3 text-xs text-white/30">{signal.detail}</p>
+                  <p className="max-w-2xl text-sm leading-7 text-white/52">{tool.text}</p>
+                  <p className="mt-4 text-xs text-white/30">{tool.detail}</p>
                 </div>
               </article>
             ))}
+          </div>
+
+          <div className="mt-10 grid gap-6 border-y border-emerald-200/12 py-7 md:grid-cols-[1fr_2fr]">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200/60">The principle</div>
+            <p className="text-base leading-7 text-white/62">See a token pushed by an influencer, Telegram group or social account? SproutPulse should give you somewhere to check the token itself before deciding how much weight to give the claim.</p>
           </div>
         </section>
 
@@ -222,7 +232,7 @@ export default function App() {
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-12 lg:px-8">
             <div className="lg:col-span-4">
               <SectionLabel>Development status</SectionLabel>
-              <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">Working prototype. Cleaner v2 underneath it.</h2>
+              <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">Working core. Bigger research experience being built around it.</h2>
             </div>
             <div className="lg:col-span-8">
               {STATUS.map(([state, text]) => (
@@ -238,7 +248,7 @@ export default function App() {
         <section id="roadmap" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-20 lg:px-8">
           <SectionLabel>Roadmap</SectionLabel>
           <div className="grid gap-10 lg:grid-cols-12">
-            <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl lg:col-span-4">Build the foundation, then earn the complexity.</h2>
+            <h2 className="text-3xl font-semibold tracking-[-0.035em] sm:text-4xl lg:col-span-4">Build the evidence first. Then make it easier to use.</h2>
             <div className="lg:col-span-8">
               {ROADMAP.map(([step, state, title, text]) => (
                 <div key={step} className="grid gap-4 border-t border-white/10 py-6 sm:grid-cols-[3rem_5rem_1fr]">
@@ -275,7 +285,7 @@ export default function App() {
           <div className="flex flex-col justify-between gap-6 border-y border-emerald-200/15 py-8 md:flex-row md:items-center">
             <div>
               <div className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-200/55">SproutPulse v2</div>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight">Building carefully. Testing before selling.</h2>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight">Research the token. Not the hype.</h2>
             </div>
             <a href="mailto:sproutpulse@proton.me" className="text-sm font-semibold text-emerald-200 underline decoration-emerald-300/30 underline-offset-4">sproutpulse@proton.me</a>
           </div>
